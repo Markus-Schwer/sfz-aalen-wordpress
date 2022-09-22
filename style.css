@@ -1,0 +1,696 @@
+/* global */
+
+:root {
+  --zeiss-blau: #134094;
+  --hochschul-blau: #0068b4;
+
+  --primary: var(--zeiss-blau);
+  --primary-shade-1: #4266a9;
+  --primary-shade-2: #718cbf;
+  --primary-shade-3: #a1b3d4;
+  --primary-shade-4: #d0d9ea;
+
+  --secondary: var(--hochschul-blau);
+  --secondary-shade-1: #2281c4;
+  --secondary-shade-2: #6f9ed4;
+  --secondary-shade-3: #a4bde3;
+  --secondary-shade-4: #d3ddf2;
+
+  --tertiary: #009ee3;
+  --tertiary-shade-1: #00b0eb;
+  --tertiary-shade-2: #5bc5f2;
+  --tertiary-shade-3: #a1daf8;
+  --tertiary-shade-4: #d4edfc;
+
+  --text-color-light: #fff;
+  --text-color-dark: #000;
+  --text-color: var(--text-color-dark);
+  --text-color-shade-1: #565656;
+  --text-color-shade-2: #878786;
+  --text-color-shade-3: #b1b2b3;
+  --text-color-shade-4: #dadada;
+
+  --background-color: #fff;
+  --foreground-color: #fff;
+
+  --max-width: 1200px;
+}
+
+body.dark-mode {
+  /* --primary: #134094; */
+  /* --primary-shade-1: #192333; */
+  /* --primary-shade-2: #212937; */
+  /* --primary-shade-3: #292f3b; */
+  /* --primary-shade-4: #31353e; */
+
+  /* --secondary: #0068b4; */
+  /* --secondary-shade-1: #142738; */
+  /* --secondary-shade-2: #212c3b; */
+  /* --text-color-shade-3: #29313d; */
+  /* --text-color-shade-4: #29313d; */
+
+  /* --tertiary: #009ee3; */
+  /* --tertiary-shade-1: #0f2f3e; */
+  /* --tertiary-shade-2: #1d323f; */
+  /* --tertiary-shade-3: #313941; */
+  /* --tertiary-shade-4: #313941; */
+
+  --text-color: var(--text-color-shade-1);
+  --text-color-shade-1: #e0e0e0;
+  --text-color-shade-2: #a0a0a0;
+  --text-color-shade-3: #6c6c6c;
+  --background-color: #12161d; /* branded background color: 8% opacity primary on #121212 background */
+  --foreground-color: #383b41; /* material design 24dp elevation */
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin: 0;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+html * {
+  font-family: "Open Sans", sans-serif;
+}
+
+html {
+  /* fix for horizontal scroll bar visible, when 100vw is being */
+  /* https://stackoverflow.com/questions/23367345 */
+  /* consider https://stackoverflow.com/questions/47095596 */
+  overflow-x: hidden;
+  height: 100%;
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 992px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* header */
+
+.logo-text {
+  fill: var(--text-color);
+  position: absolute;
+  margin-top: 27px;
+  margin-left: 46px;
+  height: 66px;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 7.5em;
+  background-color: var(--background-color);
+  z-index: 100;
+}
+
+.header-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  height: 100%;
+}
+
+nav {
+  margin-left: 248px;
+  margin-right: 46px;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+nav>a,
+.header-dropdown {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 24px;
+  padding-right: 8px;
+  position: relative;
+}
+
+nav a,
+.header-dropdown {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+nav a:hover,
+nav a:active,
+.header-dropdown:hover,
+.header-dropdown:active {
+  color: var(--tertiary);
+  stroke: var(--tertiary);
+}
+
+nav a:hover>a,
+nav a:active>a,
+.header-dropdown:hover>a,
+.header-dropdown:active>a {
+  color: var(--tertiary);
+}
+
+.header-dropdown {
+  min-width: max-content;
+}
+
+.header-dropdown .header-dropdown-icon {
+  position: relative;
+  height: 1em;
+  top: .125em;
+  padding-left: 8px;
+  stroke: var(--text-color);
+}
+
+.header-dropdown .header-dropdown-content {
+  display: none;
+  position: absolute;
+}
+
+.header-dropdown:hover .header-dropdown-content {
+  display: block;
+  background-color: var(--background-color);
+  margin-top: 32px;
+  min-width: 100%;
+  margin-left: -24px;
+  padding-bottom: 16px;
+}
+
+.header-dropdown:hover .header-dropdown-content a {
+  display: block;
+  padding: 0.5rem 24px;
+  text-decoration: none;
+}
+
+.header-dropdown:hover,
+.header-dropdown:active,
+.header-dropdown:hover .header-dropdown-icon {
+  color: var(--tertiary);
+  stroke: var(--tertiary);
+}
+
+/* footer */
+
+footer {
+  margin-top: 10em;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--text-color-light);
+  cursor: pointer;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-main {
+  background-color: var(--tertiary);
+}
+
+.footer-main-container {
+  margin: 0 auto;
+  padding: 1em 2.875em;
+  max-width: calc(var(--max-width) - 2.875em);
+  display: flex;
+}
+
+.footer-column {
+  padding: 1.25em;
+  font-size: 1em;
+  line-height: 1.5625;
+  color: var(--text-color-light);
+}
+
+.footer-column h1,
+.footer-column span {
+  margin: 0;
+  font-size: 1em;
+  line-height: 1.5625;
+  color: var(--text-color-light);
+}
+
+.footer-column .logo-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em 0;
+}
+
+.footer-bottom {
+  height: 4em;
+  background-color: var(--primary);
+}
+
+.footer-bottom-container {
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 2.875em;
+  max-width: var(--max-width);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.footer-bottom-container a {
+  font-size: 0.6875em;
+  margin-left: 8px;
+}
+
+.new-line::after {
+  content: "\a";
+  white-space: pre;
+}
+
+.footer-row {
+  width: 100%;
+  margin: 0 !important;
+}
+
+@media screen and (max-width: 64em) {
+  .footer-row {
+    margin: 0 -1.25em !important;
+  }
+}
+
+
+/* index */
+
+.slider-image {
+  height: 100%;
+  max-height: 28em;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+.main-image-container {
+  position: relative;
+  overflow: hidden;
+  margin-top: 7.5em;
+  max-height: 28em;
+}
+
+.main-image-container.home {
+  max-height: 41em;
+}
+
+.main-image-container.home .slider-image {
+  max-height: 41em;
+}
+
+.main-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-top: 2.5em;
+  position: relative;
+}
+
+main {
+  /* maybe set bottom padding to 6.25em */
+  margin: 0 2.875em 0 2.875em;
+}
+
+main hr {
+  border-color: #b1b2b3;
+  border-top: 0; /* make hr 1px thick */
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+main hr.inverted {
+  border-color: #d3ddf2ff;
+}
+
+main h1 {
+  font-size: 2.25em;
+  margin: 0;
+}
+
+main h2 {
+  font-size: 1.625em;
+  line-height: 1.38;
+  font-weight: normal;
+}
+
+main a {
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--tertiary);
+}
+
+main a:hover {
+  text-decoration: underline;
+}
+
+main section {
+  overflow: hidden;
+}
+
+.breadcrumbs {
+  display: inline;
+  float: right;
+  font-style: italic;
+  margin-right: 2.875em;
+}
+
+.main-title {
+  position: relative;
+  margin-top: -5em;
+  height: 14.375em;
+  width: max-content;
+}
+
+.main-title-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--background-color);
+}
+
+.main-title-text {
+  position: relative;
+  padding: 1.5em 2.625em;
+  width: max-content;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.main-title-text .primary,
+.main-title-text .secondary,
+.main-title-text .tertiary {
+  display: block;
+  font-family: "Kardia-Fat";
+  position: relative;
+}
+
+.main-title-text .primary {
+  color: var(--primary);
+}
+
+.main-title-text .secondary {
+  color: var(--secondary);
+}
+
+.main-title-text .tertiary {
+  color: var(--tertiary);
+}
+
+.main-title-text .large {
+  font-size: 4.625em;
+}
+
+.main-title-text .medium {
+  font-size: 3.625em;
+}
+
+.main-title-text .small {
+  font-size: 2.625em;
+}
+
+/* grid */
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 75rem;
+  margin: -0.9375rem;
+}
+
+.row.expanded {
+  max-width: none;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.center {
+  justify-content: center;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
+
+.align-flex-start {
+  align-items: flex-start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-flex-end {
+  align-items: flex-end;
+}
+
+.align-stretch {
+  align-items: stretch;
+}
+
+.align-baseline {
+  align-items: baseline;
+}
+
+.column {
+  flex: 1 1 0px;
+  padding: 0.9375rem;
+  box-sizing: border-box;
+}
+
+.column > .row {
+  margin: -0.9375rem;
+}
+
+.sm-1 {
+  flex: 0 0 8.33333%;
+  max-width: 8.33333%;
+}
+
+.sm-2 {
+  flex: 0 0 16.66667%;
+  max-width: 16.66667%;
+}
+
+.sm-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.sm-4 {
+  flex: 0 0 33.33333%;
+  max-width: 33.33333%;
+}
+
+.sm-5 {
+  flex: 0 0 41.66667%;
+  max-width: 41.66667%;
+}
+
+.sm-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.sm-7 {
+  flex: 0 0 58.33333%;
+  max-width: 58.33333%;
+}
+
+.sm-8 {
+  flex: 0 0 66.66667%;
+  max-width: 66.66667%;
+}
+
+.sm-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.sm-10 {
+  flex: 0 0 83.33333%;
+  max-width: 83.33333%;
+}
+
+.sm-11 {
+  flex: 0 0 91.66667%;
+  max-width: 91.66667%;
+}
+
+.sm-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+@media screen and (min-width: 40em) {
+  .md-1 {
+    flex: 0 0 8.33333%;
+    max-width: 8.33333%;
+  }
+
+  .md-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+  }
+
+  .md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .md-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+
+  .md-5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%;
+  }
+
+  .md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .md-7 {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%;
+  }
+
+  .md-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+  }
+
+  .md-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+
+  .md-10 {
+    flex: 0 0 83.33333%;
+    max-width: 83.33333%;
+  }
+
+  .md-11 {
+    flex: 0 0 91.66667%;
+    max-width: 91.66667%;
+  }
+
+  .md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .lg-1 {
+    flex: 0 0 8.33333%;
+    max-width: 8.33333%;
+  }
+
+  .lg-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+  }
+
+  .lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .lg-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+
+  .lg-5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%;
+  }
+
+  .lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .lg-7 {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%;
+  }
+
+  .lg-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+  }
+
+  .lg-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+
+  .lg-10 {
+    flex: 0 0 83.33333%;
+    max-width: 83.33333%;
+  }
+
+  .lg-11 {
+    flex: 0 0 91.66667%;
+    max-width: 91.66667%;
+  }
+
+  .lg-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
